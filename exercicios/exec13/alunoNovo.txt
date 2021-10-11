@@ -1,0 +1,4 @@
+nome;matricula;data Nascimento;email;cpf;telefone;endereco;cidade;estado;cep
+
+
+Pedro Pareschi de Melo;;;pedropareschi15@gmail.com;;21982187090;Rua Riachuelo, 92, bloco 5, apt. 456;Rio de Janeiro;Rio de Janeiro;20230-014
