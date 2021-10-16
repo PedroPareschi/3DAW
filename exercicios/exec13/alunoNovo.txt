@@ -1,4 +1,3 @@
 nome;matricula;data Nascimento;email;cpf;telefone;endereco;cidade;estado;cep
-
-
-Pedro Pareschi de Melo;;;pedropareschi15@gmail.com;;21982187090;Rua Riachuelo, 92, bloco 5, apt. 456;Rio de Janeiro;Rio de Janeiro;20230-014
+antonio carlos;20212123456;;tonho@gmail.com;12345678910;21990000099;rua clarimundo de melo 857;rio de janeiro;rj;20123456
+jose da silva;20212599595;08/10/2001;ze@gmail.com;987465432122;2198989898;rua clarimundo de melo;rio de janeiro;rj;22222222

@@ -1,37 +1,60 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
-    $arquivo = fopen("alunoNovo.txt", "r");
-    $texto = fread($arquivo, 1000);
-    $texto=str_replace("\n","<br />",$texto);
-    fclose($arquivo);
+//  Vou escrever os dados do formulário em um arquivo de dados
+$linhas = array();
+$colunas = array();
+$arquivoAluno = fopen("alunoNovo.txt", "r") or die("Erro na abertura do arquivo");
+$x = 0;
+$cabecalho =  fgets($arquivoAluno);
+$colunas = explode(";", $cabecalho);
+//    echo $colunas[0] . ";" . $colunas[1] . ";" . $colunas[2] . ";" . $colunas[3];
+//    echo "<br>imprimi parte do cabecalho<br>";
+while (!feof($arquivoAluno)) {
+    $linhas[] = fgets($arquivoAluno);
+//        echo $linhas[$x] . "<br>";
+//        $x++;
 }
+fclose($arquivoAluno);
 ?>
-
-<!doctype html>
-<html lang="pt">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
 </head>
 <body>
 <h1>Listar Aluno</h1>
 <br>
 <a href="exerc13_InserirAluno.php">Inserir Aluno</a><br>
-<a href="exerc13_AppendAluno.php">Adicionar Aluno</a><br>
+<a href="exerc13_AlterarAluno.php">Alterar Aluno</a><br>
 <a href="exerc13_ListarAlunos.php">Listar Alunos</a><br>
-<a href="exerc13_ExcluirAluno.php">Excluir Alunos</a><br>
-<a href="exerc13_DetalheAluno.php">Detalhe de aluno</a>
+<a href="exerc13_ExcluirAluno.php">Excluir Aluno</a><br>
+<a href="exerc13_DetalheAluno.php">Detalhe de Aluno</a><br>
+<br><br>
+<table>
+    <tr>
+        <th><?php echo $colunas[0] ?></th>
+        <th><?php echo $colunas[1] ?></th>
+        <th><?php echo $colunas[2] ?></th>
+        <th><?php echo $colunas[3] ?></th>
+        <th><?php echo $colunas[4] ?></th>
+        <th><?php echo $colunas[5] ?></th>
+        <th><?php echo $colunas[6] ?></th>
+        <th><?php echo $colunas[7] ?></th>
+        <th><?php echo $colunas[8] ?></th>
+        <th><?php echo $colunas[9] ?></th>
+    </tr>
 
-<form action="exerc13_ListarAlunos.php" method="get">
-    <input type="submit" name="inserir">
-</form>
-<?php if (!empty($texto)) {
-    echo "$texto";
-} ?>
-
+    <?php
+    foreach ($linhas as $linha) {
+        echo "<tr>";
+        $colunas1 = array();
+        $colunas1 = explode(";", $linha);
+//            echo $linha . "<br>";
+        foreach ($colunas1 as $coluna){
+            echo "<td>$coluna</td>";
+        }
+        echo "</tr>";
+    }
+    ?>
+</table>
 </body>
 </html>

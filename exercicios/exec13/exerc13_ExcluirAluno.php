@@ -1,9 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["nome"];
+    $matricula = $_POST["matricula"];
     $conteudo = file_get_contents("alunoNovo.txt");
     foreach (preg_split("/((\r?\n)|(\r\n?))/", $conteudo) as $linha) {
-        if (strpos($linha, $nome) !== false) {
+        if (strpos($linha, $matricula) !== false) {
             $conteudo = str_replace($linha, '', $conteudo);
         }
     }
@@ -24,13 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Excluir Aluno</h1>
 <br>
 <a href="exerc13_InserirAluno.php">Inserir Aluno</a><br>
-<a href="exerc13_AppendAluno.php">Adicionar Aluno</a><br>
+<a href="exerc13_AlterarAluno.php">Alterar aluno</a><br>
 <a href="exerc13_ListarAlunos.php">Listar Alunos</a><br>
-<a href="exerc13_ExcluirAluno.php">Excluir Alunos</a><br>
+<a href="exerc13_ExcluirAluno.php">Excluir Aluno</a><br>
 <a href="exerc13_DetalheAluno.php">Detalhe de aluno</a>
 
 <form action="exerc13_ExcluirAluno.php" method="post">
-    Nome: <input type="text" name="nome">
+    Nome: <input type="text" name="matricula">
     <input type="submit" name="inserir">
 </form>
 </body>

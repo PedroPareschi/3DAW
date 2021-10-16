@@ -1,10 +1,10 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST["nome"];
+if ($_SERVER["REQUEST_METHOD"] == "get") {
+    $matricula = $_POST["matricula"];
     $conteudo = file_get_contents("alunoNovo.txt");
     $flag = false;
     foreach (preg_split("/((\r?\n)|(\r\n?))/", $conteudo) as $linha) {
-        if (strpos($linha, $nome) !== false) {
+        if (strpos($linha, $matricula) !== false) {
             $flag = true;
             break;
         }
@@ -25,13 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Detalhe dos Aluno</h1>
 <br>
 <a href="exerc13_InserirAluno.php">Inserir Aluno</a><br>
-<a href="exerc13_AppendAluno.php">Adicionar Aluno</a><br>
+<a href="exerc13_AlterarAluno.php">Alterar Aluno</a><br>
 <a href="exerc13_ListarAlunos.php">Listar Alunos</a><br>
-<a href="exerc13_ExcluirAluno.php">Excluir Alunos</a><br>
+<a href="exerc13_ExcluirAluno.php">Excluir Aluno</a><br>
 <a href="exerc13_DetalheAluno.php">Detalhe de aluno</a>
 
-<form action="exerc13_DetalheAluno.php" method="post">
-    Nome: <input type="text" name="nome">
+<form action="exerc13_DetalheAluno.php" method="get">
+    Nome: <input type="text" name="matricula">
     <input type="submit" name="inserir">
 </form>
 <?php
