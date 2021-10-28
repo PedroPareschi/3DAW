@@ -1,13 +1,23 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $matricula = $_POST["matricula"];
-    $conteudo = file_get_contents("alunoNovo.txt");
-    foreach (preg_split("/((\r?\n)|(\r\n?))/", $conteudo) as $linha) {
-        if (strpos($linha, $matricula) !== false) {
-            $conteudo = str_replace($linha, '', $conteudo);
+
+    $arquivoAlunoIn = fopen("alunoNovo.txt", "r") or die("Erro na abertura do arquivo");
+    while (!feof($arquivoAlunoIn)) {
+        $linhas[] = fgets($arquivoAlunoIn);
+    }
+    fclose($arquivoAlunoIn);
+
+    $arquivoAlunoOut = fopen("alunoNovo.txt", "w") or die("Erro na abertura do arquivo");
+    $x = 0;
+    foreach($linhas as $linha) {
+        $colunaDados = explode(";", $linha);
+        if ($colunaDados[1] != $matricula) {
+            $txt = $linha;
+            fwrite($arquivoAlunoOut, $txt);
         }
     }
-    file_put_contents("alunoNovo.txt", $conteudo);
+    fclose($arquivoAlunoOut);
 }
 ?>
 
